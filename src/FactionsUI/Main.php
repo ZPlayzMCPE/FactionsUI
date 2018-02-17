@@ -26,7 +26,7 @@ class Main extends PluginBase implements Listener{
     public function onCommand(CommandSender $sender, Command $command, string $label, array $args) : bool{
         $player = $sender->getPlayer();
         switch($command->getName()){
-            case "fui":
+            case "f":
                 $this->menuForm($player);
         }
         return true;
@@ -59,13 +59,13 @@ class Main extends PluginBase implements Listener{
                     }
                 }
             });
-            $form->setTitle("FactionUI");
-            $form->setContent("Choose, an action!");
-            $form->addButton(TextFormat::GREEN . "Create a Faction?\nIf your not in one!");
-            $form->addButton("Faction Leader Commands");
-            $form->addButton("Faction Officer Commands");
-            $form->addButton("General Commands");
-            $form->addButton(TextFormat::RED . "Exit");
+            $form->setTitle("§6Void§bFactions§cPE §dUI");
+            $form->setContent("§aPlease choose an action to use!");
+            $form->addButton(TextFormat::GREEN . "§1Create a Faction?\nIf your not in one!");
+            $form->addButton("§2Faction Leader Commands");
+            $form->addButton("§3Faction Officer Commands");
+            $form->addButton("§4General Commands");
+            $form->addButton(TextFormat::RED . "§5Exit");
             $form->sendToPlayer($player);
         }
     }
@@ -80,8 +80,8 @@ class Main extends PluginBase implements Listener{
                 $this->getServer()->getCommandMap()->dispatch($player, "f create " . $this->factionName);
             }
         });
-        $form->setTitle(TextFormat::GREEN . "Faction Creation");
-        $form->addInput("Faction Name");
+        $form->setTitle(TextFormat::GREEN . "§dFaction Creation");
+        $form->addInput("§cFaction Name");
         $form->sendToPlayer($player);
     }
 
@@ -145,9 +145,9 @@ class Main extends PluginBase implements Listener{
                             $this->getServer()->getCommandMap()->dispatch($sender, "f allyno");
                             break;
                         case 12:
-                            //f breakalliancewith <faction>
+                            //f unally <faction>
                             //
-                            $this->breakAllianceForm($sender);
+                            $this->getServer()->getCommandMap()->dispatch($sender, "f unally");
                             break;
                         case 13:
                             //f delete
@@ -160,23 +160,23 @@ class Main extends PluginBase implements Listener{
                     }
                 }
             });
-            $form->setTitle("Leader Menu");
-            $form->setContent("Hello, Leader! Controll your factions settings, and much more!\nI hope you dont delete it though...");
-            $form->addButton("Claim a Faction Plot!");
-            $form->addButton("Demote an Officer?");
-            $form->addButton("Kick a member/officer");
-            $form->addButton("Give someone leader!");
-            $form->addButton("Set a Faction Home");
-            $form->addButton("Unclaim a Faction Plot");
-            $form->addButton("Unset your Factions Home");
-            $form->addButton("Set your description.");
-            $form->addButton("Promote an Officer");
-            $form->addButton("Ally with a Faction!");
-            $form->addButton("Accept an Ally Request");
-            $form->addButton("Decline an Ally Request");
-            $form->addButton("Break Alliance with a Faction");
-            $form->addButton(TextFormat::RED . "Delete your\nFaction..?");
-            $form->addButton("Back");
+            $form->setTitle("§6Leader §bMenu");
+            $form->setContent("§3Hello, Leader! Controll your factions settings, and much more!");
+            $form->addButton("§aClaim a Faction Plot!");
+            $form->addButton("§bDemote an Officer?");
+            $form->addButton("vcKick a member/officer");
+            $form->addButton("§dGive someone leader!");
+            $form->addButton("§eSet a Faction Home");
+            $form->addButton("§1Unclaim a Faction Plot");
+            $form->addButton("§2Unset your Factions Home");
+            $form->addButton("§3Set your description.");
+            $form->addButton("§4Promote an Officer");
+            $form->addButton("§5Ally with a Faction!");
+            $form->addButton("§6Accept an Ally Request");
+            $form->addButton("§9Decline an Ally Request");
+            $form->addButton("§aBreak Alliance with a Faction");
+            $form->addButton(TextFormat::RED . "§cDelete your Faction..?");
+            $form->addButton("§bBack");
             $form->sendToPlayer($player);
         }
     }
@@ -191,8 +191,8 @@ class Main extends PluginBase implements Listener{
                 $this->getServer()->getCommandMap()->dispatch($player, "f demote " . $this->playerName);
             }
         });
-        $form->setTitle(TextFormat::GREEN . "Demote an Officer");
-        $form->addInput("Player Name");
+        $form->setTitle(TextFormat::GREEN . "§bDemote an Officer");
+        $form->addInput("§3Player Name");
         $form->sendToPlayer($player);
     }
 
@@ -206,8 +206,8 @@ class Main extends PluginBase implements Listener{
                 $this->getServer()->getCommandMap()->dispatch($player, "f kick " . $this->playerName);
             }
         });
-        $form->setTitle(TextFormat::GREEN . "Kick a Player");
-        $form->addInput("Player Name to Kick");
+        $form->setTitle(TextFormat::GREEN . "§bKick a Player");
+        $form->addInput("§3Player Name to Kick");
         $form->sendToPlayer($player);
     }
 
@@ -221,8 +221,8 @@ class Main extends PluginBase implements Listener{
                 $this->getServer()->getCommandMap()->dispatch($player, "f leader " . $this->leaderName);
             }
         });
-        $form->setTitle(TextFormat::GREEN . "Transfer Ownership");
-        $form->addInput("New Owner name");
+        $form->setTitle(TextFormat::GREEN . "§bTransfer Ownership");
+        $form->addInput("§3New Owner name");
         $form->sendToPlayer($player);
     }
 
@@ -236,8 +236,8 @@ class Main extends PluginBase implements Listener{
                 $this->getServer()->getCommandMap()->dispatch($player, "f promote " . $this->luckyPerson);
             }
         });
-        $form->setTitle(TextFormat::GREEN . "Promote an Member");
-        $form->addInput("Members Name");
+        $form->setTitle(TextFormat::GREEN . "§bPromote an Member");
+        $form->addInput("§3Members Name");
         $form->sendToPlayer($player);
     }
 
@@ -248,11 +248,11 @@ class Main extends PluginBase implements Listener{
             $result = $data[0];
             if($result != null){
                 $this->factionName = $result;
-                $this->getServer()->getCommandMap()->dispatch($player, "f allywith " . $this->factionName);
+                $this->getServer()->getCommandMap()->dispatch($player, "f ally " . $this->factionName);
             }
         });
-        $form->setTitle(TextFormat::GREEN . "Ally with a Faction");
-        $form->addInput("Factions Name");
+        $form->setTitle(TextFormat::GREEN . "§bAlly with a Faction");
+        $form->addInput("§3Factions Name");
         $form->sendToPlayer($player);
     }
 
@@ -263,11 +263,11 @@ class Main extends PluginBase implements Listener{
             $result = $data[0];
             if($result != null){
                 $this->factionName = $result;
-                $this->getServer()->getCommandMap()->dispatch($player, "f breakalliancewith " . $this->factionName);
+                $this->getServer()->getCommandMap()->dispatch($player, "f unally " . $this->factionName);
             }
         });
-        $form->setTitle(TextFormat::GREEN . "Break Alliances");
-        $form->addInput("Faction Name");
+        $form->setTitle(TextFormat::GREEN . "§bBreak Alliances");
+        $form->addInput("§3Faction Name");
         $form->sendToPlayer($player);
     }
 
@@ -281,8 +281,8 @@ class Main extends PluginBase implements Listener{
                 $this->getServer()->getCommandMap()->dispatch($player, "f invite " . $this->playerName);
             }
         });
-        $form->setTitle(TextFormat::GREEN . "Invite a Player");
-        $form->addInput("Players Name");
+        $form->setTitle(TextFormat::GREEN . "§bInvite a Player");
+        $form->addInput("§3Players Name");
         $form->sendToPlayer($player);
     }
 
@@ -302,10 +302,10 @@ class Main extends PluginBase implements Listener{
                     }
                 }
             });
-            $form->setTitle("Officer Menu");
-            $form->setContent("Welcome, officers control your members here!\nNot many commands though...");
-            $form->addButton("Invite a player!");
-            $form->addButton(TextFormat::RED . "Exit");
+            $form->setTitle("§6Officer §bMenu");
+            $form->setContent("§aWelcome, officers control your members here!\nNot many commands though...");
+            $form->addButton("§2Invite a player!");
+            $form->addButton(TextFormat::RED . "§5Exit");
             $form->sendToPlayer($player);
         }
     }
@@ -319,14 +319,14 @@ class Main extends PluginBase implements Listener{
                         case 0:
                             //Info about a faction
                             //
-                            $this->factionInfoForm($sender);
+                            $this->factionWhoForm($sender);
                             break;
                         case 1:
                             //f ourmembers
                             $this->getServer()->getCommandMap()->dispatch($sender, "f ourmembers");
                             break;
                         case 2:
-                            //f ourofficerss
+                            //f ourofficers
                             $this->getServer()->getCommandMap()->dispatch($sender, "f ourofficers");
                             break;
                         case 3:
@@ -338,25 +338,41 @@ class Main extends PluginBase implements Listener{
                             $this->getServer()->getCommandMap()->dispatch($sender, "f allies");
                             break;
                         case 5:
-                            //f membersof <faction>
+                            //f listmembers <faction>
                             //
-                            $this->membersOf($sender);
+                            $this->listmembers($sender);
                             break;
                         case 6:
-                            //f officersof <faction>
+                            //f listofficers <faction>
                             //
-                            $this->officersOf($sender);
+                            $this->listofficers($sender);
                             break;
                         case 7:
-                            //f leaderof <faction>
+                            //f listleader <faction>
                             //
-                            $this->leaderOf($sender);
+                            $this->listleader($sender);
                             break;
                         case 8:
-                            //f topfactions
-                            $this->getServer()->getCommandMap()->dispatch($sender, "f topfactions");
+                            //f top
+                            $this->getServer()->getCommandMap()->dispatch($sender, "f top");
                             break;
-                        case 9:
+                         case 9:
+                            //f top money
+                            $this->getServer()->getCommandMap()->dispatch($sender, "f top money");
+                            break;
+                        case 10;
+                            //f bal
+                            $this->getServer()->getCommandMap()->dispatch($sender, "f bal");
+                            break;
+                        case 11;
+                            //f donate
+                            $this->getServer()->getCommandMap()->dispatch($sender, "f donate");
+                            break;
+                        case 12;
+                            //f withdraw
+                            $this->getServer()->getCommandMap()->dispatch($sender, "f withdraw");
+                            break;
+                        case 13:
                             //f chat
                             $this->getServer()->getCommandMap()->dispatch($sender, "f chat");
                             break;
@@ -366,80 +382,84 @@ class Main extends PluginBase implements Listener{
                     }
                 }
             });
-            $form->setTitle("General Commands");
-            $form->setContent("Choose, an action! Faction Members!");
-            $form->addButton("See info about a Faction");
-            $form->addButton("See your Faction Members");
-            $form->addButton("See your Factions Officers");
-            $form->addButton("See your Factions Leader");
-            $form->addButton("See your Factions Allies");
-            $form->addButton("See members of anoother Faction!");
-            $form->addButton("See Officers of another Faction!");
-            $form->addButton("See Leaders of another Faction!");
-            $form->addButton("See the Faction Leaderboard");
-            $form->addButton("Activate your Faction Chat");
-            $form->addButton(TextFormat::RED . "Exit");
+           "§6General §bCommands");
+            $form->setContent("vaChoose, an action! Faction Members!");
+            $form->addButton("§aSee info about a Faction");
+            $form->addButton("§bSee your Faction Members");
+            $form->addButton("§cSee your Factions Officers");
+            $form->addButton("§dSee your Factions Leader");
+            $form->addButton("§eSee your Factions Allies");
+            $form->addButton("§1See members of anoother Faction!");
+            $form->addButton("§2See Officers of another Faction!");
+            $form->addButton("§3See Leaders of another Faction!");
+            $form->addButton("§4See the Faction Leaderboard");
+            $form->addButton("§5See the Richest factions leaderBoard");
+            $form->addButton("§6See The Faction balance");
+            $form->addButton("§9Donate to a faction");
+            $form->addButton("§aWith draw from your faction bank");
+            $form->addButton("§bActivate your Faction Chat");
+            $form->addButton(TextFormat::RED . "§5Exit");
             $form->sendToPlayer($player);
         }
     }
 
-    public function factionInfoForm($player){
+    public function factionWhoForm($player){
         $api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
         $form = $api->createCustomForm(function (Player $event, array $data){
             $player = $event->getPlayer();
             $result = $data[0];
             if($result != null){
                 $this->playerName = $result;
-                $this->getServer()->getCommandMap()->dispatch($player, "f info " . $this->playerName);
+                $this->getServer()->getCommandMap()->dispatch($player, "f who " . $this->playerName);
             }
         });
-        $form->setTitle(TextFormat::GREEN . "Info about a Faction");
-        $form->addInput("Faction Name");
+        $form->setTitle(TextFormat::GREEN . "§bInfo about a Faction");
+        $form->addInput("§3Faction Name");
         $form->sendToPlayer($player);
     }
 
-    public function membersOf($player){
+    public function listmembers($player){
         $api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
         $form = $api->createCustomForm(function (Player $event, array $data){
             $player = $event->getPlayer();
             $result = $data[0];
             if($result != null){
                 $this->playerName = $result;
-                $this->getServer()->getCommandMap()->dispatch($player, "f membersof " . $this->playerName);
+                $this->getServer()->getCommandMap()->dispatch($player, "f listmembers " . $this->playerName);
             }
         });
-        $form->setTitle(TextFormat::GREEN . "Members of a Faction");
-        $form->addInput("Faction Name");
+        $form->setTitle(TextFormat::GREEN . "§bMembers of a Faction");
+        $form->addInput("§3Faction Name");
         $form->sendToPlayer($player);
     }
 
-    public function officersOf($player){
+    public function listofficers($player){
         $api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
         $form = $api->createCustomForm(function (Player $event, array $data){
             $player = $event->getPlayer();
             $result = $data[0];
             if($result != null){
                 $this->playerName = $result;
-                $this->getServer()->getCommandMap()->dispatch($player, "f officersof " . $this->playerName);
+                $this->getServer()->getCommandMap()->dispatch($player, "f listofficers " . $this->playerName);
             }
         });
-        $form->setTitle(TextFormat::GREEN . "Officers of a Faction");
-        $form->addInput("Faction Name");
+        $form->setTitle(TextFormat::GREEN . "§bOfficers of a Faction");
+        $form->addInput("§3Faction Name");
         $form->sendToPlayer($player);
     }
 
-    public function leaderOf($player){
+    public function listleader($player){
         $api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
         $form = $api->createCustomForm(function (Player $event, array $data){
             $player = $event->getPlayer();
             $result = $data[0];
             if($result != null){
                 $this->playerName = $result;
-                $this->getServer()->getCommandMap()->dispatch($player, "f leaderof " . $this->playerName);
+                $this->getServer()->getCommandMap()->dispatch($player, "f listleader " . $this->playerName);
             }
         });
-        $form->setTitle(TextFormat::GREEN . "Leader of a Faction");
-        $form->addInput("Faction Name");
+        $form->setTitle(TextFormat::GREEN . "§bLeader of a Faction");
+        $form->addInput("§3Faction Name");
         $form->sendToPlayer($player);
     }
 
