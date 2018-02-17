@@ -365,11 +365,11 @@ class Main extends PluginBase implements Listener{
                             $this->getServer()->getCommandMap()->dispatch($sender, "f bal");
                             break;
                         case 11;
-                            //f donate
+                            //f donate <amount>
                             $this->getServer()->getCommandMap()->dispatch($sender, "f donate");
                             break;
                         case 12;
-                            //f withdraw
+                            //f withdraw <amount>
                             $this->getServer()->getCommandMap()->dispatch($sender, "f withdraw");
                             break;
                         case 13:
@@ -462,6 +462,35 @@ class Main extends PluginBase implements Listener{
         $form->addInput("§3Faction Name");
         $form->sendToPlayer($player);
     }
-
+    
+    public function donate(Player $player){
+        $api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
+        $form = $api->createCustomForm(function (Player $event, array $data){
+            $player = $event->getPlayer();
+            $result = $data[0];
+            if($result != null){
+                $this->balance = $result;
+                $this->getServer()->getCommandMap()->dispatch($player, "f donate " . $this->balance);
+            }
+        });
+        $form->setTitle(TextFormat::GREEN . "§bAmount to donate to a Faction");
+        $form->addInput("§3Amount");
+        $form->sendToPlayer($player);
+    }
+    
+    public function withDraw(Player $player){
+        $api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
+        $form = $api->createCustomForm(function (Player $event, array $data){
+            $player = $event->getPlayer();
+            $result = $data[0];
+            if($result != null){
+                $this->balance = $result;
+                $this->getServer()->getCommandMap()->dispatch($player, "f withdraw " . $this->balance);
+            }
+        });
+        $form->setTitle(TextFormat::GREEN . "§bWithdraw from your Faction bank");
+        $form->addInput("§3Amount");
+        $form->sendToPlayer($player);
+    }
 
 }
