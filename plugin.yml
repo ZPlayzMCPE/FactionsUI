@@ -12,6 +12,6 @@ author: QuiverlyRivalry
 
 commands:
 
- f:
+ fac:
 
   description: "Get a Factions GUI"
