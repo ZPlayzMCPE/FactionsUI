@@ -12,6 +12,6 @@ author: QuiverlyRivalry
 
 commands:
 
- fui:
+ f:
 
-  description: "FactionsUI, made by Quiv!"
+  description: "Get a Factions GUI"
