@@ -32,7 +32,7 @@ class Main extends PluginBase implements Listener{
         return true;
     }
 
-    public function menuForm($player){
+    public function menuForm(Player $player){
         if($player instanceof Player){
             $api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
             $form = $api->createSimpleForm(function (Player $sender, array $data){
@@ -70,7 +70,7 @@ class Main extends PluginBase implements Listener{
         }
     }
 
-    public function createFactionForm($player){
+    public function createFactionForm(Player $player){
         $api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
         $form = $api->createCustomForm(function (Player $event, array $data){
             $player = $event->getPlayer();
@@ -85,7 +85,7 @@ class Main extends PluginBase implements Listener{
         $form->sendToPlayer($player);
     }
 
-    public function leaderCommandForm($player){
+    public function leaderCommandForm(Player $player){
         if($player instanceof Player){
             $api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
             $form = $api->createSimpleForm(function (Player $sender, array $data){
@@ -132,7 +132,7 @@ class Main extends PluginBase implements Listener{
                             $this->promoteForm($sender);
                             break;
                         case 9:
-                            //f allywith <faction>
+                            //f ally <faction>
                             //
                             $this->allyForm($sender);
                             break;
@@ -181,7 +181,7 @@ class Main extends PluginBase implements Listener{
         }
     }
 
-    public function demoteForm($player){
+    public function demoteForm(Player $player){
         $api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
         $form = $api->createCustomForm(function (Player $event, array $data){
             $player = $event->getPlayer();
@@ -196,7 +196,7 @@ class Main extends PluginBase implements Listener{
         $form->sendToPlayer($player);
     }
 
-    public function kickForm($player){
+    public function kickForm(Player $player){
         $api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
         $form = $api->createCustomForm(function (Player $event, array $data){
             $player = $event->getPlayer();
@@ -211,7 +211,7 @@ class Main extends PluginBase implements Listener{
         $form->sendToPlayer($player);
     }
 
-    public function leaderForm($player){
+    public function leaderForm(Player $player){
         $api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
         $form = $api->createCustomForm(function (Player $event, array $data){
             $player = $event->getPlayer();
@@ -226,7 +226,7 @@ class Main extends PluginBase implements Listener{
         $form->sendToPlayer($player);
     }
 
-    public function promoteForm($player){
+    public function promoteForm(Player $player){
         $api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
         $form = $api->createCustomForm(function (Player $event, array $data){
             $player = $event->getPlayer();
@@ -241,7 +241,7 @@ class Main extends PluginBase implements Listener{
         $form->sendToPlayer($player);
     }
 
-    public function allyForm($player){
+    public function allyForm(Player $player){
         $api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
         $form = $api->createCustomForm(function (Player $event, array $data){
             $player = $event->getPlayer();
@@ -256,7 +256,7 @@ class Main extends PluginBase implements Listener{
         $form->sendToPlayer($player);
     }
 
-    public function breakAllianceForm($player){
+    public function breakAllianceForm(Player $player){
         $api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
         $form = $api->createCustomForm(function (Player $event, array $data){
             $player = $event->getPlayer();
@@ -271,7 +271,7 @@ class Main extends PluginBase implements Listener{
         $form->sendToPlayer($player);
     }
 
-    public function inviteForm($player){
+    public function inviteForm(Player $player){
         $api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
         $form = $api->createCustomForm(function (Player $event, array $data){
             $player = $event->getPlayer();
@@ -286,7 +286,7 @@ class Main extends PluginBase implements Listener{
         $form->sendToPlayer($player);
     }
 
-    public function officerCommandForm($player){
+    public function officerCommandForm(Player $player){
         if($player instanceof Player){
             $api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
             $form = $api->createSimpleForm(function (Player $sender, array $data){
@@ -310,7 +310,7 @@ class Main extends PluginBase implements Listener{
         }
     }
 
-    public function generalCommandForm($player){
+    public function generalCommandForm(Player $player){
         if($player instanceof Player){
             $api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
             $form = $api->createSimpleForm(function (Player $sender, array $data){
@@ -403,7 +403,7 @@ class Main extends PluginBase implements Listener{
         }
     }
 
-    public function factionWhoForm($player){
+    public function factionWhoForm(Player $player){
         $api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
         $form = $api->createCustomForm(function (Player $event, array $data){
             $player = $event->getPlayer();
@@ -418,7 +418,7 @@ class Main extends PluginBase implements Listener{
         $form->sendToPlayer($player);
     }
 
-    public function listmembers($player){
+    public function listmembers(Player $player){
         $api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
         $form = $api->createCustomForm(function (Player $event, array $data){
             $player = $event->getPlayer();
@@ -433,7 +433,7 @@ class Main extends PluginBase implements Listener{
         $form->sendToPlayer($player);
     }
 
-    public function listofficers($player){
+    public function listofficers(Player $player){
         $api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
         $form = $api->createCustomForm(function (Player $event, array $data){
             $player = $event->getPlayer();
@@ -448,7 +448,7 @@ class Main extends PluginBase implements Listener{
         $form->sendToPlayer($player);
     }
 
-    public function listleader($player){
+    public function listleader(Player $player){
         $api = $this->getServer()->getPluginManager()->getPlugin("FormAPI");
         $form = $api->createCustomForm(function (Player $event, array $data){
             $player = $event->getPlayer();
