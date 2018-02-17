@@ -382,7 +382,7 @@ class Main extends PluginBase implements Listener{
                     }
                 }
             });
-           "§6General §bCommands");
+            $form->setTitle("§6General §bCommands");
             $form->setContent("vaChoose, an action! Faction Members!");
             $form->addButton("§aSee info about a Faction");
             $form->addButton("§bSee your Faction Members");
